@@ -3,4 +3,33 @@
     height: 1218px;
     background: black;
     color: white;
+    border-radius: 50px;  
+    padding: 20px;  
+}
+
+/* Top: */
+.top{
+    height: 250px;
+    padding: 0 20 px;
+}
+
+/* Display: The */
+.display{
+    font-size: 130px;
+    margin-bottom: 20px;
+    font-weight: 300;
+    text-align: right;
+}
+
+/* Buttons: */
+.buttons{
+    display: grid;
+    grid-gap: 20px;
+    grid-template-rows: repeat(5,1fr);
+    grid-template-columns: repeat(4,1fr);
+}
+
+/* Bottom: */
+.bottom{
+
 }
