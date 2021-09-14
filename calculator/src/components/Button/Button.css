@@ -9,3 +9,21 @@
     justify-content: center;
     width: 110px;
 }
+
+.Button.zero {
+    width: 250px;
+    grid-column: 1 / span 2; /* set the element on the first column, and span two columns*/
+    border-radius: 57.5px;
+    position: relative;
+    justify-content: flex-start;
+    padding-left: 43px;
+}
+
+.Button.function {
+    color: black;
+    background-color: #a5a5a5;
+}
+
+.Button.operator {
+    background: #f1a33c;
+}
