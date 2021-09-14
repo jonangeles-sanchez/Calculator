@@ -7,61 +7,115 @@ const App = () => {
   const [value, setValue] =
     useState("0"); /* This sets the constant value of 0 */
 
-  const [memory, setMemory] =
-    useState(null);
+  const [memory, setMemory] = useState(null);
 
-  const [operator, setOperator] =
-    useState(null);
-    
+  const [operator, setOperator] = useState(null);
   const handleButtonPress = (content) => () => {
     const num = parseFloat(value);
 
-    if(content === "AC") {
+    if (content === "AC") {
       setValue("0");
       setMemory(null);
       setOperator(null);
       return;
     }
 
-    if(content === "±"){
+    if (content === "±") {
       setValue((num * -1).toString());
       return;
     }
 
-    if(content === "%"){
+    if (content === "%") {
       setValue((num / 100).tostring());
       setMemory(null);
       setOperator(null);
       return;
     }
 
-    if(content === "+"){
-      setMemory(parseFloat(value));
+    if (content === ".") {
+      if (value.includes(".")) return;
+
+      setValue(value + ".");
+    }
+
+    if (content === "+") {
+      if (operator !== null) {
+        if (operator === "+") {
+          setMemory(memory + parseFloat(value));
+        } else if (operator === "−") {
+          setMemory(memory - parseFloat(value));
+        } else if (operator === "×") {
+          setMemory(memory * parseFloat(value));
+        } else if (operator === "÷") {
+          setMemory(memory / parseFloat(value));
+        }
+      } else {
+        setMemory(parseFloat(value));
+      }
       setValue("0");
-      setOperator("+");
+      setOperator("÷");
       return;
     }
 
-    if(content === "-"){
-      setMemory(parseFloat(value));
+    if (content === "-") {
+      if (operator !== null) {
+        if (operator === "+") {
+          setMemory(memory + parseFloat(value));
+        } else if (operator === "−") {
+          setMemory(memory - parseFloat(value));
+        } else if (operator === "×") {
+          setMemory(memory * parseFloat(value));
+        } else if (operator === "÷") {
+          setMemory(memory / parseFloat(value));
+        }
+      } else {
+        setMemory(parseFloat(value));
+      }
       setValue("0");
-      setOperator("-");      
+      setOperator("−");
+      return;
     }
 
-    if(content === "x"){
-      setMemory(parseFloat(value));
+    if (content === "x") {
+      if (operator !== null) {
+        if (operator === "+") {
+          setMemory(memory + parseFloat(value));
+        } else if (operator === "−") {
+          setMemory(memory - parseFloat(value));
+        } else if (operator === "×") {
+          setMemory(memory * parseFloat(value));
+        } else if (operator === "÷") {
+          setMemory(memory / parseFloat(value));
+        }
+      } else {
+        setMemory(parseFloat(value));
+      }
       setValue("0");
-      setOperator("x");      
+      setOperator("−");
+      return;
     }
 
-    if(content === "÷"){
-      setMemory(parseFloat(value));
+    if (content === "÷") {
+      if (operator !== null) {
+        if (operator === "+") {
+          setMemory(memory + parseFloat(value));
+        } else if (operator === "−") {
+          setMemory(memory - parseFloat(value));
+        } else if (operator === "×") {
+          setMemory(memory * parseFloat(value));
+        } else if (operator === "÷") {
+          setMemory(memory / parseFloat(value));
+        }
+      } else {
+        setMemory(parseFloat(value));
+      }
       setValue("0");
-      setOperator("÷");      
+      setOperator("−");
+      return;
     }
 
-    if(content === "="){
-      if(!operator) return;
+    if (content === "=") {
+      if (!operator) return;
 
       if (operator === "+") {
         setValue((memory + parseFloat(value)).toString());
@@ -76,15 +130,15 @@ const App = () => {
       setOperator(null);
       return;
     }
-      setMemory(null);
-      return;
-    }
-    
 
-    setValue(parseFloat(num + content).toString());
+    if (value[value.length - 1] === ".") {
+      setValue(value + content);
+    } else {
+      setValue(parseFloat(num + content).toString());
+    }
   };
 
-  return ( /* should be an error here for now */
+  return (
     <div className="App">
       <div className="top">7:77</div>
       <div className="display">{value}</div>
