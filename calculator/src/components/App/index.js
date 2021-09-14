@@ -8,7 +8,9 @@ const App = () => {
     useState("0"); /* This sets the constant value of 0 */
 
   const handleButtonPress = (content) => () => {
-    setValue((parseFloat(value) + content).toString());
+    const num = parseFloat(value);
+
+    setValue(parseFloat(num + content).toString());
   };
 
   return (
